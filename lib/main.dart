@@ -1,42 +1,82 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppTabBar extends StatelessWidget {
+  const AppTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      title: "Ejemplo TabBar",
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      home: MiPaginaInicial(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+}
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("TabBar Jorge Meza"),
+          bottom: TabBar(tabs: [
+            Tab(
+              text: "refa1",
+              icon: Icon(Icons.account_box_rounded),
+            ),
+            Tab(
+              text: "refa2",
+              icon: Icon(Icons.account_box_rounded),
+            ),
+            Tab(
+              text: "refa3",
+              icon: Icon(Icons.account_box_rounded),
+            ),
+            Tab(
+              text: "refa4",
+              icon: Icon(Icons.account_box_rounded),
+            ),
+          ] //Texto Icono
+              ),
         ),
+        body: const TabBarView(children: <Widget>[
+          Center(
+            child: Text(
+              "Alerta",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Alerta 2",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Alerta 3",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Alerta 4",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
+            ),
+          )
+        ]),
       ),
     );
   }
